@@ -1,0 +1,69 @@
+"""
+Created on %(date)s
+
+@author: %(nicolas andino 9935)s
+"""
+def metodo_euler(f, x0, y0, x_aprox, h):
+    x_0 = x0
+    y_0 = y0
+
+    while x_0 < x_aprox:
+        funcion = f(x_0, y_0)
+        y_0 += h * funcion
+        x_0 += h
+
+    return y_0
+
+
+def opcion_1():
+    def edo():
+        edo = input("Ingrese la expresión de la EDO en términos de x e y: ")
+        x0 = float(input("Ingrese el valor inicial de x: "))
+        y0 = float(input("Ingrese el valor inicial de y en x0: "))
+        x_aprox = float(input("Ingrese el punto donde desea calcular la solución: "))
+
+        def f(x, y):
+            return eval(edo)
+
+        h = float(input("Ingrese el paso: "))
+        y_aprox = metodo_euler(f, x0, y0, x_aprox, h)
+        print(f"Aproximación con h = {h}: y({x_aprox}) ≈ {y_aprox}")
+        n=input("Desea probar con un paso diferente? si/no :")
+        if n=="Si" or n=="si":
+            while True:
+                h=float(input("Ingrese el paso: "))
+                y_aprox = metodo_euler(f, x0, y0, x_aprox, h)
+                print(f"Aproximación con h = {h}: y({x_aprox}) ≈ {y_aprox}")
+                m=input("Desea probar otro? si/no: ")
+                if m == "no" or m== "No":
+                    break
+        
+            
+    if __name__ == "__main__":
+        edo()
+
+
+def opcion_2():
+    print("Gracias por usar el programa")
+    
+
+def mostrar_menu():
+    print("\nBienvenido/a al programa de resolución de metodo de euler:")
+    print("1. Resolucion del metodo")
+    print("2. Salir")
+
+def main():
+    while True:
+        mostrar_menu()
+        opcion = input("Ingrese el numero de lo que desea hacer: ")
+        if opcion == "1":
+            opcion_1()
+        elif opcion == "2":
+            opcion_2()
+            break
+        else:
+            print("Opcion incorrecta, ingrese N°1 o N°2.")
+            
+
+if __name__ == "__main__":
+    main()
